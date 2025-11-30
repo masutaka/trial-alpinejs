@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js 素振り</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .example {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .example h2 {
+            margin-top: 0;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alpine.js 素振り</h1>
+
+    <!-- 例1: カウンター -->
+    <div class="example">
+        <h2>例1: カウンター</h2>
+        <div x-data="{ count: 0 }">
+            <button @click="count++">増加</button>
+            <button @click="count--">減少</button>
+            <button @click="count = 0">リセット</button>
+            <p>現在のカウント: <span x-text="count"></span></p>
+        </div>
+    </div>
+
+    <!-- 例2: 表示/非表示の切り替え -->
+    <div class="example">
+        <h2>例2: 表示/非表示の切り替え</h2>
+        <div x-data="{ open: false }">
+            <button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"></button>
+            <p x-show="open">この文章は表示/非表示が切り替わります。</p>
+        </div>
+    </div>
+
+    <!-- 例3: 入力フォームとバインディング -->
+    <div class="example">
+        <h2>例3: 入力フォームとバインディング</h2>
+        <div x-data="{ message: '' }">
+            <input type="text" x-model="message" placeholder="何か入力してください">
+            <p>入力された内容: <span x-text="message"></span></p>
+        </div>
+    </div>
+
+    <!-- 例4: ループ -->
+    <div class="example">
+        <h2>例4: ループ</h2>
+        <div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }">
+            <ul>
+                <template x-for="item in items" :key="item">
+                    <li x-text="item"></li>
+                </template>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 例5: 条件分岐 -->
+    <div class="example">
+        <h2>例5: 条件分岐</h2>
+        <div x-data="{ loggedIn: false }">
+            <button @click="loggedIn = !loggedIn">ログイン状態を切り替え</button>
+            <p x-show="loggedIn">ようこそ！ログイン中です。</p>
+            <p x-show="!loggedIn">ログインしてください。</p>
+        </div>
+    </div>
+
+</body>
+</html>
