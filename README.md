@@ -32,5 +32,6 @@ http://localhost:8000 にアクセス
 - [Alpine.js 公式サイト](https://alpinejs.dev/)
 - [Alpine.js スタートガイド](https://alpinejs.dev/start-here)
 - [How to use Alpine.js with Rails & Turbo](https://codewithrails.com/alpinejs)
+- [Alpine.jsを始めよう！ #JavaScript - Qiita](https://qiita.com/layzy_glp/items/54c7d281f4000dfa8250)
 - [Alpine.jsで実装するログイン/登録フォーム切り替えUI #Rails - Qiita](https://qiita.com/Ery-556/items/f8d9dc345ef2aa2b5a08)
 - [Alpine.jsがそれなりによい、という話 - TSUGULOG](https://yoshitsugu.net/posts/2025-05-21-alpine-js.html)
