@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js 素振り</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link id="prism-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css">
+    <link id="prism-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-okaidia.min.css" disabled>
+    <style>
+     body {
+       font-family: sans-serif;
+       max-width: 800px;
+       margin: 50px auto;
+       padding: 20px;
+     }
+     .example {
+       margin-bottom: 40px;
+       padding: 20px;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+     }
+     .example h2 {
+       margin-top: 0;
+     }
+     button {
+       padding: 8px 16px;
+       margin: 5px;
+       cursor: pointer;
+     }
+     input {
+       padding: 8px;
+       margin: 5px;
+     }
+     .theme-toggle {
+       background: none;
+       border: none;
+       padding: 4px;
+       margin: 0;
+       color: inherit;
+     }
+     .toggle-code {
+       background: #f0f0f0;
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       font-size: 0.85em;
+       margin-top: 10px;
+     }
+     .source-code {
+       margin-top: 10px;
+     }
+     .note {
+       font-size: 0.9em;
+       color: #666;
+     }
+     body.dark {
+       background-color: #1a1a2e;
+       color: #e0e0e0;
+     }
+     .dark .example {
+       border-color: #444;
+       background-color: #16213e;
+     }
+     .dark button {
+       background-color: #2a2a4a;
+       border: 1px solid #555;
+       color: #e0e0e0;
+     }
+     .dark input {
+       background-color: #2a2a4a;
+       border: 1px solid #555;
+       color: #e0e0e0;
+     }
+     .dark .theme-toggle {
+       background: none;
+       border: none;
+       color: #e0e0e0;
+     }
+     .dark .toggle-code {
+       background-color: #2a2a4a;
+       border-color: #555;
+     }
+     .dark .note {
+       color: #999;
+     }
+    </style>
+  </head>
+  <body x-data="{ darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches }"
+        x-effect="
+          document.body.classList.toggle('dark', darkMode);
+          document.getElementById('prism-light').disabled = darkMode;
+          document.getElementById('prism-dark').disabled = !darkMode;
+        ">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <h1>Alpine.js 素振り</h1>
+      <button class="theme-toggle" @click="darkMode = !darkMode" aria-label="テーマ切り替え">
+        <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 例1: カウンター -->
+    <div class="example" x-data="{ showCode: false }">
+      <h2>例1: カウンター</h2>
+      <div x-data="{ count: 0 }">
+        <!-- @click は x-on:click の短縮記法 -->
+        <button @click="count++">増加</button>
+        <button @click="count--">減少</button>
+        <button @click="count = 0">リセット</button>
+        <p>現在のカウント: <span x-text="count"></span></p>
+      </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ count: 0 }"&gt;
+  &lt;!-- @click は x-on:click の短縮記法 --&gt;
+  &lt;button @click="count++"&gt;増加&lt;/button&gt;
+  &lt;button @click="count--"&gt;減少&lt;/button&gt;
+  &lt;button @click="count = 0"&gt;リセット&lt;/button&gt;
+  &lt;p&gt;現在のカウント: &lt;span x-text="count"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 例2: 表示/非表示の切り替え -->
+    <div class="example" x-data="{ showCode: false }">
+      <h2>例2: 表示/非表示の切り替え</h2>
+      <div x-data="{ open: false }">
+        <button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"></button>
+        <p x-show="open">この文章は表示/非表示が切り替わります。</p>
+      </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ open: false }"&gt;
+  &lt;button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"&gt;&lt;/button&gt;
+  &lt;p x-show="open"&gt;この文章は表示/非表示が切り替わります。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 例3: 入力フォームとバインディング -->
+    <div class="example" x-data="{ showCode: false }">
+      <h2>例3: 入力フォームとバインディング</h2>
+      <div x-data="{ message: '' }">
+        <input type="text" x-model="message" placeholder="何か入力してください">
+        <p>入力された内容: <span x-text="message"></span></p>
+      </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ message: '' }"&gt;
+  &lt;input type="text" x-model="message" placeholder="何か入力してください"&gt;
+  &lt;p&gt;入力された内容: &lt;span x-text="message"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 例4: ループ -->
+    <div class="example" x-data="{ showCode: false }">
+      <h2>例4: ループ</h2>
+      <div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }">
+        <ul>
+          <template x-for="item in items" :key="item">
+            <li x-text="item"></li>
+          </template>
+        </ul>
+      </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }"&gt;
+  &lt;ul&gt;
+    &lt;template x-for="item in items" :key="item"&gt;
+      &lt;li x-text="item"&gt;&lt;/li&gt;
+    &lt;/template&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 例5: x-show による条件分岐 -->
+    <div class="example" x-data="{ showCode: false }">
+      <h2>例5: x-show による条件分岐</h2>
+      <div x-data="{ loggedIn: false }">
+        <button @click="loggedIn = !loggedIn">ログイン状態を切り替え</button>
+        <p x-show="loggedIn">ようこそ！ログイン中です。</p>
+        <p x-show="!loggedIn">ログインしてください。</p>
+        <p class="note">※ x-show は display:none で表示/非表示を切り替えます（要素は常に DOM に存在）</p>
+      </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ loggedIn: false }"&gt;
+  &lt;button @click="loggedIn = !loggedIn"&gt;ログイン状態を切り替え&lt;/button&gt;
+  &lt;p x-show="loggedIn"&gt;ようこそ！ログイン中です。&lt;/p&gt;
+  &lt;p x-show="!loggedIn"&gt;ログインしてください。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <!-- 例6: x-if による条件分岐 -->
+    <div class="example" x-data="{ showCode: false }">
+      <h2>例6: x-if による条件分岐</h2>
+      <div x-data="{ showContent: false }">
+        <button @click="showContent = !showContent">コンテンツを切り替え</button>
+        <template x-if="showContent">
+          <div>
+            <p>このコンテンツは x-if で制御されています。</p>
+            <p>x-show と異なり、DOM から完全に追加/削除されます。</p>
+          </div>
+        </template>
+        <template x-if="!showContent">
+          <p>コンテンツが非表示の状態です。</p>
+        </template>
+        <p class="note">※ x-if は要素を DOM から追加/削除します（条件が false の時は DOM に存在しない）</p>
+      </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ showContent: false }"&gt;
+  &lt;button @click="showContent = !showContent"&gt;コンテンツを切り替え&lt;/button&gt;
+  &lt;template x-if="showContent"&gt;
+    &lt;div&gt;
+      &lt;p&gt;このコンテンツは x-if で制御されています。&lt;/p&gt;
+      &lt;p&gt;x-show と異なり、DOM から完全に追加/削除されます。&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/template&gt;
+  &lt;template x-if="!showContent"&gt;
+    &lt;p&gt;コンテンツが非表示の状態です。&lt;/p&gt;
+  &lt;/template&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+  </body>
+</html>
