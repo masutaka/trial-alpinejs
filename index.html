@@ -30,13 +30,28 @@
        padding: 8px;
        margin: 5px;
      }
+     .toggle-code {
+       background: #f0f0f0;
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       font-size: 0.85em;
+       margin-top: 10px;
+     }
+     .source-code {
+       background: #f5f5f5;
+       padding: 12px;
+       border-radius: 4px;
+       overflow-x: auto;
+       margin-top: 10px;
+       font-size: 0.85em;
+     }
     </style>
   </head>
   <body>
     <h1>Alpine.js 素振り</h1>
 
     <!-- 例1: カウンター -->
-    <div class="example">
+    <div class="example" x-data="{ showCode: false }">
       <h2>例1: カウンター</h2>
       <div x-data="{ count: 0 }">
         <!-- @click は x-on:click の短縮記法 -->
@@ -45,28 +60,46 @@
         <button @click="count = 0">リセット</button>
         <p>現在のカウント: <span x-text="count"></span></p>
       </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ count: 0 }"&gt;
+  &lt;!-- @click は x-on:click の短縮記法 --&gt;
+  &lt;button @click="count++"&gt;増加&lt;/button&gt;
+  &lt;button @click="count--"&gt;減少&lt;/button&gt;
+  &lt;button @click="count = 0"&gt;リセット&lt;/button&gt;
+  &lt;p&gt;現在のカウント: &lt;span x-text="count"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <!-- 例2: 表示/非表示の切り替え -->
-    <div class="example">
+    <div class="example" x-data="{ showCode: false }">
       <h2>例2: 表示/非表示の切り替え</h2>
       <div x-data="{ open: false }">
         <button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"></button>
         <p x-show="open">この文章は表示/非表示が切り替わります。</p>
       </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ open: false }"&gt;
+  &lt;button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"&gt;&lt;/button&gt;
+  &lt;p x-show="open"&gt;この文章は表示/非表示が切り替わります。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <!-- 例3: 入力フォームとバインディング -->
-    <div class="example">
+    <div class="example" x-data="{ showCode: false }">
       <h2>例3: 入力フォームとバインディング</h2>
       <div x-data="{ message: '' }">
         <input type="text" x-model="message" placeholder="何か入力してください">
         <p>入力された内容: <span x-text="message"></span></p>
       </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ message: '' }"&gt;
+  &lt;input type="text" x-model="message" placeholder="何か入力してください"&gt;
+  &lt;p&gt;入力された内容: &lt;span x-text="message"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <!-- 例4: ループ -->
-    <div class="example">
+    <div class="example" x-data="{ showCode: false }">
       <h2>例4: ループ</h2>
       <div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }">
         <ul>
@@ -75,10 +108,18 @@
           </template>
         </ul>
       </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }"&gt;
+  &lt;ul&gt;
+    &lt;template x-for="item in items" :key="item"&gt;
+      &lt;li x-text="item"&gt;&lt;/li&gt;
+    &lt;/template&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <!-- 例5: x-show による条件分岐 -->
-    <div class="example">
+    <div class="example" x-data="{ showCode: false }">
       <h2>例5: x-show による条件分岐</h2>
       <div x-data="{ loggedIn: false }">
         <button @click="loggedIn = !loggedIn">ログイン状態を切り替え</button>
@@ -86,10 +127,16 @@
         <p x-show="!loggedIn">ログインしてください。</p>
         <p style="font-size: 0.9em; color: #666;">※ x-show は display:none で表示/非表示を切り替えます（要素は常に DOM に存在）</p>
       </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ loggedIn: false }"&gt;
+  &lt;button @click="loggedIn = !loggedIn"&gt;ログイン状態を切り替え&lt;/button&gt;
+  &lt;p x-show="loggedIn"&gt;ようこそ！ログイン中です。&lt;/p&gt;
+  &lt;p x-show="!loggedIn"&gt;ログインしてください。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
     <!-- 例6: x-if による条件分岐 -->
-    <div class="example">
+    <div class="example" x-data="{ showCode: false }">
       <h2>例6: x-if による条件分岐</h2>
       <div x-data="{ showContent: false }">
         <button @click="showContent = !showContent">コンテンツを切り替え</button>
@@ -104,6 +151,19 @@
         </template>
         <p style="font-size: 0.9em; color: #666;">※ x-if は要素を DOM から追加/削除します（条件が false の時は DOM に存在しない）</p>
       </div>
+      <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
+      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ showContent: false }"&gt;
+  &lt;button @click="showContent = !showContent"&gt;コンテンツを切り替え&lt;/button&gt;
+  &lt;template x-if="showContent"&gt;
+    &lt;div&gt;
+      &lt;p&gt;このコンテンツは x-if で制御されています。&lt;/p&gt;
+      &lt;p&gt;x-show と異なり、DOM から完全に追加/削除されます。&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/template&gt;
+  &lt;template x-if="!showContent"&gt;
+    &lt;p&gt;コンテンツが非表示の状態です。&lt;/p&gt;
+  &lt;/template&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
   </body>
