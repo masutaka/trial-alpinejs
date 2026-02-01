@@ -39,6 +39,7 @@
     <div class="example">
       <h2>例1: カウンター</h2>
       <div x-data="{ count: 0 }">
+        <!-- @click は x-on:click の短縮記法 -->
         <button @click="count++">増加</button>
         <button @click="count--">減少</button>
         <button @click="count = 0">リセット</button>
