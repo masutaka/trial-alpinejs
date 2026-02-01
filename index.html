@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpine.js 素振り</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css">
     <style>
      body {
        font-family: sans-serif;
@@ -38,12 +39,7 @@
        margin-top: 10px;
      }
      .source-code {
-       background: #f5f5f5;
-       padding: 12px;
-       border-radius: 4px;
-       overflow-x: auto;
        margin-top: 10px;
-       font-size: 0.85em;
      }
     </style>
   </head>
@@ -61,7 +57,7 @@
         <p>現在のカウント: <span x-text="count"></span></p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
-      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ count: 0 }"&gt;
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ count: 0 }"&gt;
   &lt;!-- @click は x-on:click の短縮記法 --&gt;
   &lt;button @click="count++"&gt;増加&lt;/button&gt;
   &lt;button @click="count--"&gt;減少&lt;/button&gt;
@@ -78,7 +74,7 @@
         <p x-show="open">この文章は表示/非表示が切り替わります。</p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
-      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ open: false }"&gt;
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ open: false }"&gt;
   &lt;button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"&gt;&lt;/button&gt;
   &lt;p x-show="open"&gt;この文章は表示/非表示が切り替わります。&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -92,7 +88,7 @@
         <p>入力された内容: <span x-text="message"></span></p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
-      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ message: '' }"&gt;
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ message: '' }"&gt;
   &lt;input type="text" x-model="message" placeholder="何か入力してください"&gt;
   &lt;p&gt;入力された内容: &lt;span x-text="message"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -109,7 +105,7 @@
         </ul>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
-      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }"&gt;
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }"&gt;
   &lt;ul&gt;
     &lt;template x-for="item in items" :key="item"&gt;
       &lt;li x-text="item"&gt;&lt;/li&gt;
@@ -128,7 +124,7 @@
         <p style="font-size: 0.9em; color: #666;">※ x-show は display:none で表示/非表示を切り替えます（要素は常に DOM に存在）</p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
-      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ loggedIn: false }"&gt;
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ loggedIn: false }"&gt;
   &lt;button @click="loggedIn = !loggedIn"&gt;ログイン状態を切り替え&lt;/button&gt;
   &lt;p x-show="loggedIn"&gt;ようこそ！ログイン中です。&lt;/p&gt;
   &lt;p x-show="!loggedIn"&gt;ログインしてください。&lt;/p&gt;
@@ -152,7 +148,7 @@
         <p style="font-size: 0.9em; color: #666;">※ x-if は要素を DOM から追加/削除します（条件が false の時は DOM に存在しない）</p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
-      <pre class="source-code" x-show="showCode"><code>&lt;div x-data="{ showContent: false }"&gt;
+      <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ showContent: false }"&gt;
   &lt;button @click="showContent = !showContent"&gt;コンテンツを切り替え&lt;/button&gt;
   &lt;template x-if="showContent"&gt;
     &lt;div&gt;
@@ -166,5 +162,6 @@
 &lt;/div&gt;</code></pre>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
   </body>
 </html>
