@@ -1,20 +1,14 @@
 # Alpine.js 素振り
 
-Alpine.js の基本機能を試すためのローカル環境です。
+Alpine.js の基本機能を試すためのサンプル集です。
 
-## セットアップ
+https://masutaka.github.io/trial-alpinejs/
 
-特別なインストールは不要です。ローカルサーバーを起動するだけで使えます。
-
-## 使い方
-
-1. ローカルサーバーを起動
+## ローカルで確認する場合
 
 ```bash
 npx http-server -p 8000
 ```
-
-2. ブラウザで開く
 
 http://localhost:8000 にアクセス
 
