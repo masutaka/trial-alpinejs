@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/suzuki-shunsuke/pinact/refs/heads/main/json-schema/pinact.json
+# pinact - https://github.com/suzuki-shunsuke/pinact
+
+version: 3
+
+ignore_actions:
+  # GitHub 社が管理する公式 Action はサプライチェーン攻撃のリスクが低いと判断し、
+  # SHA ハッシュによるピン留めを行わない。
+  # メジャーバージョンタグ (v\d+) を使用し、dependabot による自動バージョン追従に任せる。
+  - name: actions/.*
+    ref: v\d+
+  - name: github/.*
+    ref: v\d+
+  # masutaka/* は自分が管理するアクションのため、main ブランチ参照を許容する。
+  - name: masutaka/.*
+    ref: main
