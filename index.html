@@ -49,6 +49,9 @@
      .source-code {
        margin-top: 10px;
      }
+     [x-cloak] {
+       display: none !important;
+     }
      .note {
        font-size: 0.9em;
        color: #666;
@@ -330,7 +333,7 @@
             </article>
           </template>
         </div>
-        <p x-show="filteredItems.length === 0" class="empty-state">該当するレシピが見つかりません。</p>
+        <p x-cloak x-show="filteredItems.length === 0" class="empty-state">該当するレシピが見つかりません。</p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
       <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{
@@ -382,7 +385,7 @@
       &lt;/article&gt;
     &lt;/template&gt;
   &lt;/div&gt;
-  &lt;p x-show="filteredItems.length === 0" class="empty-state"&gt;該当するレシピが見つかりません。&lt;/p&gt;
+  &lt;p x-cloak x-show="filteredItems.length === 0" class="empty-state"&gt;該当するレシピが見つかりません。&lt;/p&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
