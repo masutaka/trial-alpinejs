@@ -58,6 +58,17 @@
        width: 100%;
        margin: 0 0 16px;
      }
+     .sr-only {
+       position: absolute;
+       width: 1px;
+       height: 1px;
+       padding: 0;
+       margin: -1px;
+       overflow: hidden;
+       clip: rect(0, 0, 0, 0);
+       white-space: nowrap;
+       border: 0;
+     }
      .recipe-list {
        display: grid;
        gap: 12px;
@@ -309,7 +320,8 @@
           });
         }
       }">
-        <input type="search" x-model="query" class="search-input" placeholder="料理名や説明文で検索">
+        <label for="search-query" class="sr-only">料理名や説明文で検索</label>
+        <input id="search-query" type="search" x-model="query" class="search-input" placeholder="料理名や説明文で検索">
         <div class="recipe-list">
           <template x-for="item in filteredItems" :key="item.title">
             <article class="recipe-card">
@@ -360,7 +372,8 @@
     });
   }
 }"&gt;
-  &lt;input type="search" x-model="query" class="search-input" placeholder="料理名や説明文で検索"&gt;
+  &lt;label for="search-query" class="sr-only"&gt;料理名や説明文で検索&lt;/label&gt;
+  &lt;input id="search-query" type="search" x-model="query" class="search-input" placeholder="料理名や説明文で検索"&gt;
   &lt;div class="recipe-list"&gt;
     &lt;template x-for="item in filteredItems" :key="item.title"&gt;
       &lt;article class="recipe-card"&gt;
