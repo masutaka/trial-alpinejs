@@ -156,12 +156,12 @@
     <div class="example" x-data="{ showCode: false }">
       <h2>例3: 入力フォームとバインディング</h2>
       <div x-data="{ message: '' }">
-        <input type="text" x-model="message" placeholder="何か入力してください">
+        <input type="text" x-model="message" placeholder="何か入力してください" aria-label="メッセージ入力">
         <p>入力された内容: <span x-text="message"></span></p>
       </div>
       <button class="toggle-code" @click="showCode = !showCode" x-text="showCode ? 'HTML を隠す' : 'HTML を表示'"></button>
       <pre class="source-code language-html" x-show="showCode"><code class="language-html">&lt;div x-data="{ message: '' }"&gt;
-  &lt;input type="text" x-model="message" placeholder="何か入力してください"&gt;
+  &lt;input type="text" x-model="message" placeholder="何か入力してください" aria-label="メッセージ入力"&gt;
   &lt;p&gt;入力された内容: &lt;span x-text="message"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -267,7 +267,7 @@
           );
         }
       }">
-        <input type="text" x-model="search" placeholder="料理名や食材で検索...">
+        <input type="text" x-model="search" placeholder="料理名や食材で検索..." aria-label="料理名や食材で検索">
         <template x-for="item in filteredItems" :key="item.title">
           <div>
             <h3 x-text="item.title"></h3>
@@ -289,7 +289,7 @@
     );
   }
 }"&gt;
-  &lt;input type="text" x-model="search" placeholder="料理名や食材で検索..."&gt;
+  &lt;input type="text" x-model="search" placeholder="料理名や食材で検索..." aria-label="料理名や食材で検索"&gt;
   &lt;template x-for="item in filteredItems" :key="item.title"&gt;
     &lt;div&gt;
       &lt;h3 x-text="item.title"&gt;&lt;/h3&gt;
