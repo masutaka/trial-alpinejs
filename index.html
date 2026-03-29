@@ -23,11 +23,13 @@
      .example h2 {
        margin-top: 0;
      }
-     .example h2 a {
+     .example h2 a,
+     nav a {
        color: inherit;
        text-decoration: none;
      }
-     .example h2 a:hover {
+     .example h2 a:hover,
+     nav a:hover {
        text-decoration: underline;
      }
      button {
@@ -171,6 +173,18 @@
         </a>
       </div>
     </div>
+
+    <nav>
+      <ol>
+        <li><a href="#example-1">カウンター</a></li>
+        <li><a href="#example-2">表示/非表示の切り替え</a></li>
+        <li><a href="#example-3">入力フォームとバインディング</a></li>
+        <li><a href="#example-4">ループ</a></li>
+        <li><a href="#example-5">x-show による条件分岐</a></li>
+        <li><a href="#example-6">x-if による条件分岐</a></li>
+        <li><a href="#example-7">検索フィルター</a></li>
+      </ol>
+    </nav>
 
     <!-- 例1: カウンター -->
     <div id="example-1" class="example" x-data="{ showCode: false }">
