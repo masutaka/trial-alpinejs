@@ -23,6 +23,13 @@
      .example h2 {
        margin-top: 0;
      }
+     .example h2 a {
+       color: inherit;
+       text-decoration: none;
+     }
+     .example h2 a:hover {
+       text-decoration: underline;
+     }
      button {
        padding: 8px 16px;
        margin: 5px;
@@ -166,8 +173,8 @@
     </div>
 
     <!-- 例1: カウンター -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例1: カウンター</h2>
+    <div id="example-1" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-1">例1: カウンター</a></h2>
       <div x-data="{ count: 0 }">
         <!-- @click は x-on:click の短縮記法 -->
         <button @click="count++">増加</button>
@@ -186,8 +193,8 @@
     </div>
 
     <!-- 例2: 表示/非表示の切り替え -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例2: 表示/非表示の切り替え</h2>
+    <div id="example-2" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-2">例2: 表示/非表示の切り替え</a></h2>
       <div x-data="{ open: false }">
         <button @click="open = !open" x-text="open ? '非表示にする' : '表示する'"></button>
         <p x-show="open">この文章は表示/非表示が切り替わります。</p>
@@ -200,8 +207,8 @@
     </div>
 
     <!-- 例3: 入力フォームとバインディング -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例3: 入力フォームとバインディング</h2>
+    <div id="example-3" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-3">例3: 入力フォームとバインディング</a></h2>
       <div x-data="{ message: '' }">
         <input type="text" x-model="message" placeholder="何か入力してください">
         <p>入力された内容: <span x-text="message"></span></p>
@@ -214,8 +221,8 @@
     </div>
 
     <!-- 例4: ループ -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例4: ループ</h2>
+    <div id="example-4" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-4">例4: ループ</a></h2>
       <div x-data="{ items: ['りんご', 'バナナ', 'オレンジ'] }">
         <ul>
           <template x-for="item in items" :key="item">
@@ -234,8 +241,8 @@
     </div>
 
     <!-- 例5: x-show による条件分岐 -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例5: x-show による条件分岐</h2>
+    <div id="example-5" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-5">例5: x-show による条件分岐</a></h2>
       <div x-data="{ loggedIn: false }">
         <button @click="loggedIn = !loggedIn">ログイン状態を切り替え</button>
         <p x-show="loggedIn">ようこそ！ログイン中です。</p>
@@ -251,8 +258,8 @@
     </div>
 
     <!-- 例6: x-if による条件分岐 -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例6: x-if による条件分岐</h2>
+    <div id="example-6" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-6">例6: x-if による条件分岐</a></h2>
       <div x-data="{ showContent: false }">
         <button @click="showContent = !showContent">コンテンツを切り替え</button>
         <template x-if="showContent">
@@ -282,8 +289,8 @@
     </div>
 
     <!-- 例7: 検索フィルター -->
-    <div class="example" x-data="{ showCode: false }">
-      <h2>例7: 検索フィルター</h2>
+    <div id="example-7" class="example" x-data="{ showCode: false }">
+      <h2><a href="#example-7">例7: 検索フィルター</a></h2>
       <div x-data="{
         query: '',
         items: [
